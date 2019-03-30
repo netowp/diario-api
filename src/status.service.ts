@@ -14,11 +14,11 @@ export class StatusService {
         return await createdStatus.save();
     }
 
-    async findAll(): Promise<Status[]> {
-        return await this.statusModel.find().exec();
+    async findAll(date): Promise<Status[]> {
+        return await this.statusModel.find({ date: date }).exec();
     }
 
-    async findOne(id): Promise<Status> {
-        return await this.statusModel.findById(id).exec();
+    async findOne(date, accountId): Promise<Status> {
+        return await this.statusModel.findOne({ date: date, account_id: accountId}).exec();
     }
 }

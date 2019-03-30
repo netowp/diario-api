@@ -10,18 +10,18 @@ export class StatusController {
 
     }
 
-    @Get()
-    async findAll() {
-        return await this.statusService.findAll();
+    @Get(':date')
+    async findAll(@Param() params) {
+        return await this.statusService.findAll(params.date);
     }
 
-    @Get(':id')
+    @Get(':date/:account_id')
     async findOne(@Param() params) {
-        return await this.statusService.findOne(params.id);
+        return await this.statusService.findOne(params.date, params.account_id);
     }
 
-    @Post()
-    async createOne(@Body() createStatusDto) {
+    @Post(':date/:account_id')
+    async createOne(@Body() createStatusDto, @Param() params) {
         return await this.statusService.create(createStatusDto);
     }
 
